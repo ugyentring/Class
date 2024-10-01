@@ -1,6 +1,6 @@
 public class Tree {
-    public Node root;
 
+    //Node class
     public class Node {
         Node right;
         Node left;
@@ -11,6 +11,7 @@ public class Tree {
         }
     }
 
+    public Node root;
 
     //constructor
     public Tree(int data) {
