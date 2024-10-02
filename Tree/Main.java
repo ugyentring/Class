@@ -19,15 +19,39 @@ class BinaryTree {
         root = null;
     }
 
-    //inorder traversal
+    //inorder traversal  4 2 5 1 3 7
+    //callstack 1 2 4 5 3 7
     public void inorder(Node node) {
         if (node == null) {
             return;
         }
-
         inorder(node.left);
         System.out.print(node.value + " ");
         inorder(node.right);
+    }
+
+    //preorder traversal 1 2 4 5 3 7
+    //callstack 1 2 4 5 3 7
+    public void preorder(Node node) {
+        if (node == null) {
+            return;
+        }
+
+        System.out.print(node.value + " ");
+        preorder(node.left);
+        preorder(node.right);
+    }
+
+    //postorder traversal 4 5 2 7 3 1
+    //callstack 4 5 2 7 3 1
+    public void postorder(Node node) {
+        if (node == null) {
+            return;
+        }
+
+        postorder(node.left);
+        postorder(node.right);
+        System.out.print(node.value + " ");
     }
 }
 
@@ -43,19 +67,15 @@ public class Main {
         Node n7 = new Node(7);
 
         bt.root = n1;
-
         n1.left = n2;
         n1.right = n3;
-
         n2.left = n4;
         n2.right = n5;
-
         n3.right = n7;
 
-        //preorder traversal 1 2 4 5 3 7
-        //postorder traversal 4 5 2 7 3 1
-
-        bt.inorder(n1);
+        // bt.inorder(n1);
+        // bt.preorder(n1);
+        bt.postorder(n1);
     }
     
 }
