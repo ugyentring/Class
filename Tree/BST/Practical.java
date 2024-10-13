@@ -4,6 +4,7 @@ class Node {
     int data;
     Node left;
     Node right;
+
     public Node(int data) {
         this.data = data;
         this.left = null;
@@ -11,11 +12,9 @@ class Node {
     }
 }
 
-//binary search tree class
 class BST {
     Node root;
 
-    //insert method
     public boolean insert(int data) {
         Node newNode = new Node(data);
 
@@ -44,7 +43,38 @@ class BST {
                 temp = temp.right;
             }
         }
+    }
 
+    public Node delete(Node root, int key) {
+        if (root == null) {
+            return null;
+        }
+
+        if (key < root.data) {
+            root.left = delete(root.left, key);
+        } else if (key > root.data) {
+            root.right = delete(root.right, key);
+        } else {
+            if (root.left == null) {
+                return root.right;
+            } else if (root.right == null) {
+                return root.left;
+            }
+
+            root.data = minValue(root.right);
+            root.right = delete(root.right, root.data);
+        }
+
+        return root;
+    }
+
+    public int minValue(Node root) {
+        int minValue = root.data;
+        while (root.left != null) {
+            root = root.left;
+            minValue = root.data;
+        }
+        return minValue;
     }
 }
 
@@ -62,5 +92,9 @@ class BSTMain {
         bst.insert(27);
 
         System.out.println(bst.root.data);
+
+        bst.root = bst.delete(bst.root, 21);
+
+        System.out.println(bst.root.left.data);
     }
 }
